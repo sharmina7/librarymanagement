@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Library Management Web App</title>
+  <style>
+    /* CSS styling for the login page */
+    .main{
+        display: flex;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .container-1 {
+        flex:1;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 50px 20px;
+      text-align: center;
+    }
+    .container-2 {
+      flex:1;
+    }
+    .inner{
+      width: 50%;    
+      background-color: #ffffff;
+      padding: 20px;
+    margin-top:20%;
+    margin-left:20%;    
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 50%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .social-media-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .social-media-button {
+      width: 48%;
+      padding: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      text-align: center;
+      cursor: pointer;
+    }
+    
+    
+    h1 {
+      font-size: 48px;
+      color: #4f4f4f;
+      margin-bottom: 20px;
+    }
+    
+    p {
+      font-size: 20px;
+      color: #666666;
+      margin-bottom: 30px;
+    }
+    
+    .chat-icon {
+      font-size: 80px;
+      color: #ff6363;
+      animation: float 2s ease-in-out infinite alternate;
+    }
+    
+    /* Keyframe animation for the floating chat icon */
+    @keyframes float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-20px); }
+    }
+  </style>
+  <script>
+    function loginWithFacebook() {
+  FB.login(function(response) {
+    if (response.authResponse) {
+      // User has successfully authenticated with Facebook
+      console.log('Facebook login successful');
+      // You can now perform additional actions, such as making API calls or redirecting the user.
+    } else {
+      // User cancelled the Facebook login or did not authorize your app
+      console.log('Facebook login cancelled');
+    }
+  }, { scope: 'email' }); // Specify the required permissions here
+}
+
+function loginWithGoogle() {
+  google.accounts.id.initialize({
+    client_id: 'YOUR_CLIENT_ID',
+    callback: handleGoogleResponse
+  });
+  google.accounts.id.prompt();
+}
+
+function handleGoogleResponse(response) {
+  if (response.error) {
+    // Error occurred during Google login
+    console.log('Google login error:', response.error);
+  } else {
+    // User has successfully authenticated with Google
+    console.log('Google login successful');
+    // You can now perform additional actions, such as making API calls or redirecting the user.
+  }
+}
+  </script>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v11.0&appId=YOUR_APP_ID&autoLogAppEvents=1" nonce="YOUR_NONCE_VALUE"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <div class="main">
+        <div class="container-1">
+          <h1 style="color: #ff6363;">Welcome to the Library Management Web App</h1>
+          <p style="color: #4f4f4f;">Manage your library collection with ease.</p>
+          <div class="chat-icon">💬</div>
+        </div>
+      
+  <div class="container-2">
+    <div class="inner">
+    <h2>Login</h2>
+    <form action="./books.html">
+      <input type="text" placeholder="Email" required><br>
+      <input type="password" placeholder="Password" required><br>
+      <input type="submit" value="Login"/>
+    </form>
+    <div class="social-media-buttons">
+      <div class="social-media-button" onclick="loginWithFacebook()">
+        Login with Facebook
+      </div>
+      <div class="social-media-button" onclick="loginWithGoogle()">
+        Login with Google
+      </div>
+    </div>
+    <p>Don't have an account? <a href="#">Sign up</a></p>
+  </div>
+</div>
+</div>
+
+</body>
+</html>
